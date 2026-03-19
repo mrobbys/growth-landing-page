@@ -1,43 +1,24 @@
-# Astro Starter Kit: Minimal
+# Growth Landing Page
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Project slicing design website, diambil dari challenge **iCodeThis**. Project ini dibangun dengan fokus pada performa tinggi, animasi *scroll* yang mulus, dan arsitektur komponen yang rapi.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+🔗 **Sumber Design:** [iCodeThis Pro Challenge - Growth Landing Page](https://icodethis.com/pro-challenges/growth-landing-page)
+🌐 **Live Demo:** https://landing-page-growth.netlify.app/
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+## 🛠️ Tech Stack
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+- **[Astro](https://astro.build/)**
+- **[Tailwind CSS](https://tailwindcss.com/)**
+- **[Motion.dev](https://motion.dev/)**
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+---
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## ✨ Fitur Unggulan
 
-Any static assets, like images, can be placed in the `public/` directory.
+- 📱 **Mobile-First & 100% Responsif:** Tampilan sempurna mulai dari layar HP hingga desktop.
+- 🧩 **Modular:** Bagian konten berulang seperti **FAQ**, **Pricing**, dan **Testimonials** datanya dipisah menggunakan file `JSON`, sehingga komponen Astro tetap bersih dan mudah di-*maintain*.
+- ⚡ **Optimasi Performa:** Dibangun dengan filosofi *Astro Island* yang memastikan nol JavaScript membebani browser jika tidak diperlukan.
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---
