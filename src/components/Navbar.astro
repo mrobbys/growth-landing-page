@@ -9,7 +9,7 @@ import Button from './ui/Button.astro';
   x-data='{scrolled: false}'
   @scroll.window='scrolled = window.scrollY > 10'
   x-bind:class="scrolled ? 'shadow-xl' : 'shadow-none'"
-  class='navbar-animate sticky top-0 z-50 w-full bg-zinc-50/70 backdrop-blur-md transition-all duration-500 ease-out'
+  class='navbar-animate sticky top-0 z-50 w-full bg-zinc-50/70 backdrop-blur-md transition-all duration-500 ease-out pt-[env(safe-area-inset-top)]'
   style='transform: translateY(-100%);'
 >
   <nav
