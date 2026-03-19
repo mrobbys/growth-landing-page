@@ -1,0 +1,57 @@
+---
+interface Props {
+  id: number;
+  domId: string;
+  question: string;
+  answer: string;
+}
+
+/**
+ * Accordion item for FAQ section
+ * id: accordion item id
+ * domId: accordion item dom id
+ * question: accordion item question
+ * answer: accordion item answer
+ */
+
+
+const { id, domId, question, answer } = Astro.props;
+---
+
+<div
+  class='accordion-item overflow-hidden border-b text-sm opacity-0 transition-colors duration-500'
+  x-bind:class={`activeAccordion === ${id} ? 'border-zinc-950' : 'border-zinc-300'`}
+>
+  <div class='space-y-2 md:space-y-4'>
+    <button
+      type='button'
+      @click={`setActiveAccordion(${id})`}
+      aria-controls={`faq-answer-${domId}`}
+      x-bind:aria-expanded={`activeAccordion === ${id}`}
+      class='flex w-full items-start justify-between py-2 text-left select-none'
+    >
+      <span class='max-w-[80%]'>{question}</span>
+      <svg
+        class='h-6 w-6 duration-300 ease-out'
+        x-bind:class={`activeAccordion === ${id} ? 'rotate-[135deg]' : 'rotate-0'`}
+        fill='#000000'
+        viewBox='0 0 24 24'
+        xmlns='http://www.w3.org/2000/svg'
+        aria-hidden='true'
+      >
+        <path
+          d='M5,12H19M12,5V19'
+          style='fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;'
+        ></path>
+      </svg>
+    </button>
+    <div
+      id={`faq-answer-${domId}`}
+      x-show={`activeAccordion === ${id}`}
+      x-collapse
+      x-cloak
+    >
+      <p class='pb-4 text-zinc-500 md:pr-12 md:pb-8'>{answer}</p>
+    </div>
+  </div>
+</div>

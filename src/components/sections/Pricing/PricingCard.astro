@@ -1,0 +1,112 @@
+---
+import Button from '@components/ui/Button.astro';
+
+interface Props {
+  id: number;
+  variant?: 'light' | 'dark';
+  title: string;
+  description: string;
+  price: string;
+  priceSuffix?: string;
+  preFeatureText?: string;
+  features: string[];
+}
+
+const {
+  id,
+  variant = 'light',
+  title,
+  description,
+  price,
+  priceSuffix,
+  preFeatureText,
+  features,
+} = Astro.props;
+
+/**
+ * Theme for pricing card
+ * - light: light theme
+ * - dark: dark theme
+ */
+const themeConfig = {
+  light: {
+    card: 'bg-zinc-100 text-zinc-900',
+    description: 'text-zinc-500',
+    divider: 'border-zinc-200',
+    featureText: 'text-zinc-700',
+    icon: 'text-zinc-800',
+  },
+  dark: {
+    card: 'bg-zinc-950 text-zinc-50',
+    description: 'text-zinc-50',
+    divider: 'border-zinc-800',
+    featureText: 'text-zinc-300',
+    icon: 'text-zinc-100',
+  },
+};
+
+// active theme based on variant
+const theme = themeConfig[variant];
+
+// base style for card (layout + spacing + shadow)
+const baseStyles =
+  'w-full max-w-[400px] rounded-2xl p-8 md:p-12 flex flex-col gap-6 shadow-lg hover:shadow-xl transition-shadow duration-300 opacity-0 pricing-card';
+---
+
+<article class={`${baseStyles} ${theme.card}`} data-plan-id={id}>
+   <!-- header -->
+  <header class='space-y-4'>
+    <h3 class='text-3xl font-medium'>{title}</h3>
+    <p class={`${theme.description}`}>
+      {description}
+    </p>
+  </header>
+
+  <!-- price + suffix (optional) -->
+  <div class='flex items-baseline gap-2'>
+    <span class='text-3xl font-medium'>{price}</span>
+    {priceSuffix && <span class={`${theme.description}`}>{priceSuffix}</span>}
+  </div>
+
+  <!-- divider -->
+  <hr class={`border-t ${theme.divider}`} />
+
+  <!-- features -->
+  <div class='flex-1 space-y-4'>
+    {preFeatureText && <p class={`${theme.description}`}>{preFeatureText}</p>}
+
+    <ul class='space-y-4'>
+      {
+        features.map((feature, i) => (
+          <li
+            class='flex items-start gap-3 text-sm leading-relaxed'
+            data-feature={i}
+          >
+            <svg
+              class={`h-5 w-5 shrink-0 ${theme.icon}`}
+              fill='none'
+              viewBox='0 0 24 24'
+              stroke='currentColor'
+              aria-hidden='true'
+            >
+              <path
+                stroke-linecap='round'
+                stroke-linejoin='round'
+                stroke-width='2'
+                d='M5 13l4 4L19 7'
+              />
+            </svg>
+            <span class={`${theme.featureText}`}>{feature}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <!-- cta btn -->
+  <div class='mt-auto pt-4'>
+    <Button class='w-full' aria-label={`Get started with ${title} plan`}
+      >Get started</Button
+    >
+  </div>
+</article>

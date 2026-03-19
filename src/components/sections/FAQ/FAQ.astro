@@ -1,0 +1,150 @@
+---
+import AccordionItem from './AccordionItem.astro';
+import faqData from '@data/faq.json';
+
+// get unique categories from faqData
+const categories = [...new Set(faqData.map((faq) => faq.category))];
+
+// group faqs by category
+const faqsByCategory = categories.map((category) => ({
+  category,
+  faqs: faqData.filter((faq) => faq.category === category),
+}));
+
+// grouping all categories
+const allCategory = {
+  category: 'all',
+  faqs: faqData,
+};
+
+const finalTabsData = [allCategory, ...faqsByCategory];
+
+// convert category names to labels
+const toLabel = (str: string) =>
+  str
+    .split('-')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+---
+
+<section id='faq' aria-label='Frequently Asked Questions' class='relative'>
+  <div class='mx-auto max-w-7xl space-y-6 px-4 py-16 md:space-y-10 md:px-8'>
+    <header class='faq-header text-center opacity-0 md:mx-auto md:w-2xl'>
+      <h2 class='font-medium'>
+        <span class='block text-3xl md:hidden'>FAQ</span>
+        <span class='hidden text-5xl md:block'>Frequently asked questions</span>
+      </h2>
+    </header>
+
+    <div
+      x-data='{
+        tabSelected: 0,
+        activeAccordion: null,
+        tabButtonClicked(index){
+            this.tabSelected = index;
+            setTimeout(() => {
+                  this.activeAccordion = null;
+              }, 100);
+        },
+        setActiveAccordion(id) {
+          this.activeAccordion = this.activeAccordion === id ? null : id;
+        },
+    }'
+      class='relative w-full space-y-8'
+    >
+      <div
+        role='tablist'
+        aria-label='FAQ categories'
+        class='faq-tabs relative mx-auto flex w-fit max-w-sm items-center justify-center gap-2 rounded-lg bg-zinc-200 p-2 opacity-0 select-none'
+      >
+        {
+          finalTabsData.map(({ category }, index) => (
+            <button
+              id={`faq-tab-${index}`}
+              role='tab'
+              type='button'
+              aria-controls={`faq-panel-${index}`}
+              x-bind:aria-selected={`tabSelected === ${index}`}
+              x-bind:tabindex={`tabSelected === ${index}`}
+              x-on:click={`tabButtonClicked(${index})`}
+              x-bind:class={`tabSelected === ${index} ? 'bg-blue-500 text-zinc-50' : 'hover:bg-blue-300 hover:text-zinc-950'`}
+              class='relative z-20 cursor-pointer rounded-lg px-4 py-2 text-sm font-medium whitespace-nowrap transition-all'
+            >
+              {toLabel(category)}
+            </button>
+          ))
+        }
+      </div>
+
+      <div class='relative mx-auto w-full max-w-3xl pt-10'>
+        {
+          finalTabsData.map(({ faqs }, index) => (
+            <div
+              id={`faq-panel-${index}`}
+              role='tabpanel'
+              aria-labelledby={`faq-tab-${index}`}
+              x-show={`tabSelected === ${index}`}
+              x-cloak
+              class='faq-panels w-full space-y-4'
+            >
+              {faqs.map((faq) => (
+                <AccordionItem
+                  id={faq.id}
+                  domId={`tab-${index}-faq-${faq.id}`}
+                  question={faq.question}
+                  answer={faq.answer}
+                />
+              ))}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { animate, inView, stagger } from 'motion';
+
+  inView(
+    '.faq-header',
+    (target) => {
+      animate(
+        target,
+        { opacity: [0, 1], y: [40, 0] },
+        { duration: 0.8, delay: 0.3, ease: 'easeOut' },
+      );
+    },
+    { amount: 1 },
+  );
+
+  inView(
+    '.faq-tabs',
+    (target) => {
+      animate(
+        target,
+        { opacity: [0, 1], y: [40, 0] },
+        { duration: 0.8, delay: 0.4, ease: 'easeOut' },
+      );
+    },
+    { amount: 0.5 },
+  );
+
+  inView(
+    '.faq-panels',
+    (target) => {
+      const items = target.querySelectorAll('.accordion-item');
+
+      animate(
+        items,
+        { opacity: [0, 1], y: [40, 0] },
+        {
+          duration: 0.8,
+          delay: stagger(0.2, { startDelay: 0.3 }),
+          ease: 'easeOut',
+        },
+      );
+    },
+    { amount: 0.3 },
+  );
+</script>

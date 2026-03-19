@@ -1,0 +1,57 @@
+---
+/**
+ * Reusable Button Component
+ * Dynamically renders as an `<a>` link or a `<button>` based on the `href` prop.
+ */
+interface Props {
+  /** Optional URL. If provided, renders an <a> tag. Otherwise, renders a <button>. */
+  href?: string;
+  /** Visual color theme of the button. Default: 'primary'. */
+  variant?: 'primary' | 'secondary';
+  /** Controls padding and border radius. Default: 'md'. */
+  size?: 'sm' | 'md' | 'icon';
+  /** Additional Tailwind classes for custom overrides (e.g., 'w-full', 'mt-4'). */
+  class?: string;
+  type?: 'button' | 'submit' | 'reset';
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  class: buttonClass = '',
+  type = 'button',
+  ...rest
+} = Astro.props as Props & Record<string, unknown>;
+
+// Shared default styles applied to all button variations
+const baseStyles =
+  'inline-flex items-center justify-center gap-2 transition-colors duration-300 font-medium shadow-md cursor-pointer';
+
+// Color theme variations
+const variants = {
+  primary: 'bg-blue-400 text-zinc-50 hover:bg-blue-600',
+  secondary: 'bg-gray-100 text-zinc-950 hover:bg-blue-400 hover:text-zinc-50',
+};
+
+// Padding and border-radius sizes
+const sizes = {
+  sm: 'px-4 py-2 rounded-xl', // Best for Navbar
+  md: 'px-6 py-3 rounded-2xl', // Best for Hero CTA or standard forms
+  icon: 'p-2 rounded-lg', // Best for icon-only buttons
+};
+
+const classes = `${baseStyles} ${variants[variant]} ${sizes[size]} ${buttonClass}`;
+---
+
+{
+  href ? (
+    <a href={href} class={classes} {...rest}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class={classes} {...rest}>
+      <slot />
+    </button>
+  )
+}

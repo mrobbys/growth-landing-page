@@ -1,17 +1,21 @@
 ---
-
+import Layout from '@layouts/Layout.astro';
+import Hero from '@components/sections/Hero/Hero.astro';
+import HowItWorks from '@components/sections/HowItWorks/HowItWorks.astro';
+import Testimonials from '@components/sections/Testimonials/Testimonials.astro';
+import Divider from '@components/ui/Divider.astro';
+import Pricing from '@components/sections/Pricing/Pricing.astro';
+import FAQ from '@components/sections/FAQ/FAQ.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <Hero />
+  <HowItWorks />
+  <!-- divider between section how it works and testimonials -->
+  <Divider bgColor="bg-zinc-950" borderColor="border-zinc-700" />
+  <Testimonials />
+  <Pricing />
+  <!-- divider between section pricing and faq -->
+  <Divider bgColor="bg-zinc-50" borderColor="border-zinc-300" />
+  <FAQ />
+</Layout>

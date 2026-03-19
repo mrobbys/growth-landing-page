@@ -1,0 +1,36 @@
+---
+interface Props {
+  href?: string;
+  label: string;
+  variant?: 'desktop' | 'mobile';
+  class?: string;
+}
+
+const {
+  href = '#',
+  label,
+  variant = 'desktop',
+  class: customClass = '',
+} = Astro.props;
+
+const baseStyles =
+  'transition-colors duration-300 text-zinc-950 hover:text-blue-500 font-medium';
+
+const variants = {
+  mobile: 'w-full text-lg py-4 block',
+  desktop: '',
+};
+
+const mobileAttrs =
+  variant === 'mobile'
+    ? { 'x-on:click': 'mobileMenuIsOpen = !mobileMenuIsOpen' }
+    : {};
+---
+
+<a
+  href={href}
+  class={`${baseStyles} ${variants[variant]} ${customClass}`}
+  {...mobileAttrs}
+>
+  {label}
+</a>

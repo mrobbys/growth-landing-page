@@ -1,0 +1,24 @@
+---
+import { Image } from 'astro:assets';
+import MainHeroDesktop from '@assets/images/main-hero-desktop.png';
+import WomenHero from '@assets/images/women-hero.png';
+import TeamCall from './TeamCall.astro';
+---
+
+<figure
+  class='figure-desktop relative bottom-36 z-0 -mb-36 hidden w-full items-end justify-center gap-4 md:flex opacity-0'
+>
+  <div class='w-full'>
+    <Image
+      src={MainHeroDesktop}
+      alt='Main dashboard preview'
+      class='w-full'
+      loading='eager'
+      decoding='async'
+    />
+  </div>
+  <div class='relative flex flex-col gap-4'>
+    <Image src={WomenHero} alt='Women Hero' class='w-full max-w-53' />
+    <TeamCall />
+  </div>
+</figure>

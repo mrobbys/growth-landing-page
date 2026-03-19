@@ -1,0 +1,75 @@
+---
+import TestimonialCard from './TestimonialCard.astro';
+import testimonialData from '@data/testimonials.json';
+
+// error handling
+const testimonials =
+  testimonialData && Array.isArray(testimonialData) ? testimonialData : [];
+---
+
+<section
+  id='testimonials'
+  aria-label='Customer Testimonials and Success Stories'
+  class='relative bg-zinc-950'
+>
+  <div class='mx-auto max-w-7xl space-y-12 px-4 py-16 md:px-8'>
+    <header
+      class='testimonials-header text-zinc-50 opacity-0 md:w-2/3 lg:w-1/2'
+    >
+      <h2 class='text-3xl leading-tight font-medium md:text-4xl'>
+        Don't just take our word for it, see the success stories from businesses
+        just like yours.
+      </h2>
+    </header>
+
+    <div
+      class='testimonial-container scrollbar-hidden flex flex-col items-center justify-center gap-4 overflow-y-hidden md:snap-x md:snap-mandatory md:flex-row md:items-start md:justify-start md:gap-6 md:overflow-x-scroll md:scroll-smooth md:rounded-lg md:pb-2'
+      role='region'
+      aria-label='Testimonials Carousel'
+    >
+      {
+        testimonials.length > 0 ? (
+          testimonials.map(({ id, quote, name, company }) => (
+            <TestimonialCard {id} {quote} {name} {company} />
+          ))
+        ) : (
+          <p class='mx-auto py-8 text-zinc-400'>
+            No testimonials available at the moment.
+          </p>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import { animate, inView, stagger } from 'motion';
+
+  inView(
+    '.testimonials-header',
+    (target) => {
+      animate(
+        target,
+        { opacity: [0, 1], x: [-50, 0] },
+        { duration: 0.6, ease: 'easeOut' },
+      );
+    },
+    { amount: 0.5 },
+  );
+
+  inView(
+    '.testimonial-container',
+    () => {
+      animate(
+        '.testimonial-card',
+        { opacity: [0, 1], y: [40, 0] },
+        {
+          duration: 0.8,
+          delay: stagger(0.3, { startDelay: 0.4 }),
+          ease: 'easeOut',
+        },
+      );
+    },
+    { amount: 0.3 },
+  );
+</script>

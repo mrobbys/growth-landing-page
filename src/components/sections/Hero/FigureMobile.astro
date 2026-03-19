@@ -1,0 +1,41 @@
+---
+import { Image } from 'astro:assets';
+import TeamCapodoperaMobile from '@assets/images/team-capodopera-mobile.png';
+import GrowthMobile from '@assets/images/growth-mobile.png';
+import WomenHero from '@assets/images/women-hero.png';
+import TeamCall from './TeamCall.astro';
+---
+
+<figure
+  class='figure-mobile mt-20 flex h-auto w-full flex-col items-center justify-center gap-4 opacity-0 md:hidden'
+>
+  <div class='w-full'>
+    <Image
+      src={TeamCapodoperaMobile}
+      alt='Team collaborating on Capodopera'
+      loading='eager'
+      decoding='async'
+      class='w-full'
+    />
+  </div>
+  <div class='flex w-full items-center gap-4'>
+    <div class='w-[65%]'>
+      <Image
+        src={GrowthMobile}
+        alt='Growth chart illustration'
+        class='w-full'
+        loading='lazy'
+        decoding='async'
+      />
+    </div>
+    <div class='relative flex w-[35%] flex-col gap-4'>
+      <Image
+        src={WomenHero}
+        alt='Photo of team member'
+        loading='lazy'
+        decoding='async'
+      />
+      <TeamCall />
+    </div>
+  </div>
+</figure>

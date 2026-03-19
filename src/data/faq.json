@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "category": "getting-started",
+    "question": "How does the contact management feature help me keep track of clients and partners?",
+    "answer": "Keep track of your contacts, gain valuable insights, analyse live data and performance metrics."
+  },
+  {
+    "id": 2,
+    "category": "getting-started",
+    "question": "Can I customize the dashboards and reporting feature to display the metrics that are most important to my business?",
+    "answer": "Yes, our highly customizable dashboards allow you to drag and drop widgets, ensuring you only see the metrics that matter most to your specific business goals."
+  },
+  {
+    "id": 3,
+    "category": "getting-started",
+    "question": "How does the task management feature help me delegate tasks to my team and track progress?",
+    "answer": "You can easily assign tasks, set deadlines, and monitor the completion status in real-time through our intuitive kanban boards and list views."
+  },
+  {
+    "id": 4,
+    "category": "pricing",
+    "question": "Can I collaborate with my team in real-time using all tools?",
+    "answer": "Real-time collaboration tools, including messaging and video conferencing, are fully unlocked and available on our Premium plan."
+  },
+  {
+    "id": 5,
+    "category": "getting-started",
+    "question": "Is the app available on all devices?",
+    "answer": "Yes! The Growth app is fully responsive and available via web browser, as well as native applications for iOS and Android devices."
+  },
+  {
+    "id": 6,
+    "category": "pricing",
+    "question": "How does the app help me stay compliant when working with freelancers and contractors?",
+    "answer": "Our Premium tier includes built-in compliance tracking, automated contract generation, and tax form management to ensure you meet all legal requirements."
+  }
+]

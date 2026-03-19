@@ -1,0 +1,88 @@
+---
+import Button from '@components/ui/Button.astro';
+import FigureMobile from './FigureMobile.astro';
+import FigureDesktop from './FigureDesktop.astro';
+---
+
+<section id='hero' aria-label='Hero Section' class='relative'>
+  <div class='mx-auto max-w-7xl space-y-4 px-4 py-12 md:px-8'>
+    <header
+      class='hero-header-animate space-y-6 text-center opacity-0 md:text-start'
+    >
+      <h1 class='text-4xl font-medium md:w-[80%] lg:w-[70%] lg:text-6xl'>
+        A powerful solution to grow your startup. Fast!
+      </h1>
+      <p class='text-lg md:w-[60%] lg:w-[45%] lg:text-xl'>
+        Organise, collaborate, and track progress seamlessly with our
+        one-stop-shop startup growth tool.
+      </p>
+    </header>
+
+    <!-- button start -->
+    <nav
+      aria-label='Hero CTA'
+      class='hero-cta-animate relative z-10 mt-6 flex translate-y-5 flex-col justify-center gap-5 opacity-0 md:flex-row md:justify-start'
+    >
+      <Button>Get Started</Button>
+      <Button variant='secondary'>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          viewBox='0 0 24 24'
+          width='24'
+          height='24'
+          fill='none'
+          stroke='currentColor'
+          stroke-width='2'
+          stroke-linecap='round'
+          stroke-linejoin='round'
+        >
+          <circle cx='12' cy='10' r='7'></circle>
+          <circle cx='12' cy='10' r='2.5'></circle>
+          <path d='M8 20h8'></path>
+        </svg>
+        Book a demo</Button
+      >
+    </nav>
+    <!-- button end -->
+
+    <!-- images mobile start -->
+    <FigureMobile />
+    <!-- images mobile end -->
+
+    <!-- images desktop start -->
+    <FigureDesktop />
+    <!-- images desktop end -->
+  </div>
+</section>
+
+<script>
+  import { animate, inView } from 'motion';
+
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+  inView('.hero-header-animate', (target) => {
+    animate(
+      target,
+      isMobile
+        ? { opacity: [0, 1], y: [50, 0] }
+        : { opacity: [0, 1], x: [-50, 0] },
+      { duration: 0.8, ease: 'easeOut' },
+    );
+  });
+
+  inView('.hero-cta-animate', (target) => {
+    animate(
+      target,
+      { opacity: [0, 1], y: [50, 0] },
+      { duration: 0.5, delay: 0.5, ease: 'easeOut' },
+    );
+  });
+
+  inView('.figure-desktop, .figure-mobile', (target) => {
+    animate(
+      target,
+      { opacity: [0, 1], y: isMobile ? [50, 0] : [100, 0] },
+      { duration: 0.8, delay: 0.8, ease: 'easeOut' },
+    );
+  });
+</script>

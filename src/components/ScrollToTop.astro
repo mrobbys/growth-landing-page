@@ -1,0 +1,31 @@
+---
+
+---
+
+<button
+  type='button'
+  x-data='{scrolled: false}'
+  aria-label='Scroll to top'
+  @scroll.window='scrolled = window.scrollY > 300'
+  @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
+  class='fixed right-4 bottom-4 rounded-full bg-blue-500 p-2 text-zinc-50 transition-all duration-500 ease-out hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300'
+  x-bind:class="scrolled
+    ? 'opacity-100 translate-y-0 pointer-events-auto cursor-pointer'
+    : 'opacity-0 translate-y-2 pointer-events-none'"
+  x-cloak
+>
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    class='h-6 w-6'
+    fill='none'
+    viewBox='0 0 24 24'
+    stroke='currentColor'
+    aria-hidden='true'
+  >
+    <path
+      stroke-linecap='round'
+      stroke-linejoin='round'
+      stroke-width='2'
+      d='M5 15l7-7 7 7'></path>
+  </svg>
+</button>

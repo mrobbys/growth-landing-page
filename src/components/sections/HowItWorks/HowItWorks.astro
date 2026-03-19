@@ -1,0 +1,68 @@
+---
+import Button from '@components/ui/Button.astro';
+import Iframe from './Iframe.astro';
+---
+
+<section
+  id='how-it-works'
+  aria-label='How It Works - Video Tutorial'
+  class='relative bg-zinc-950'
+>
+  <div class='mx-auto max-w-7xl space-y-12 px-4 py-16 md:px-8'>
+    <header
+      class='how-it-works-header mx-auto text-center text-zinc-50 opacity-0 md:max-w-4xl'
+    >
+      <h2 class='text-4xl leading-tight font-medium md:text-5xl lg:text-6xl'>
+        See how it works and get started in less than 2 minutes
+      </h2>
+    </header>
+
+    <div class='how-it-works-video opacity-0'>
+      <Iframe />
+    </div>
+
+    <div class='how-it-works-cta flex justify-center opacity-0'>
+      <Button class='w-full md:w-fit'>Get Started</Button>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { animate, inView } from 'motion';
+
+  inView(
+    '.how-it-works-header',
+    (target) => {
+      animate(
+        target,
+        { opacity: [0, 1], y: [40, 0] },
+        { duration: 0.8, ease: 'easeOut' },
+      );
+    },
+    { amount: 0.5 },
+  );
+
+  inView(
+    '.how-it-works-video',
+    (target) => {
+      animate(
+        target,
+        { opacity: [0, 1], y: [40, 0] },
+        { duration: 0.8, delay: 0.2, ease: 'easeOut' },
+      );
+    },
+    { amount: 0.5 },
+  );
+
+  inView(
+    '.how-it-works-cta',
+    (target) => {
+      animate(
+        target,
+        { opacity: [0, 1], y: [40, 0] },
+        { duration: 0.8, delay: 0.4, ease: 'easeOut' },
+      );
+    },
+    { amount: 0.5 },
+  );
+</script>

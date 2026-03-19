@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "variant": "light",
+    "title": "Simple",
+    "description": "Keep track of your contacts, gain valuable insights, analyse live data and performance metrics.",
+    "price": "Free",
+    "priceSuffix": "* No credit card required",
+    "features": [
+      "Real-time monitoring",
+      "Track key performance indicators",
+      "Schedule appointments",
+      "Organize, delegate and keep track of tasks"
+    ]
+  },
+  {
+    "id": 2,
+    "variant": "dark",
+    "title": "Premium",
+    "description": "Keep track of your contacts, gain valuable insights, analyse live data and performance metrics.",
+    "price": "$49",
+    "priceSuffix": "/month",
+    "preFeatureText": "Everything from the free plan plus:",
+    "features": [
+      "Data-driven decisions",
+      "Data visualisation",
+      "Schedule appointments",
+      "Store and organise contact information",
+      "Real-time communication tools for messaging and video conferencing"
+    ]
+  }
+]
