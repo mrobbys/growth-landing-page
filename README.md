@@ -3,7 +3,7 @@
 Project slicing design website, diambil dari challenge **iCodeThis**. Project ini dibangun dengan fokus pada performa tinggi, animasi *scroll* yang mulus, dan arsitektur komponen yang rapi.
 
 - 🔗 **Sumber Design:** [iCodeThis Pro Challenge - Growth Landing Page](https://icodethis.com/pro-challenges/growth-landing-page)
-- 🌐 **Live Demo:** https://landing-page-growth.netlify.app/
+- 🌐 **Live Demo:** https://growth-landing-page.mrobbys.my.id
 
 ---
 
